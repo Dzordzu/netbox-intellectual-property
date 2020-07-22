@@ -1,7 +1,7 @@
 from extras.plugins import PluginConfig
 
 class ServicesTypesConfig(PluginConfig):
-    name = "netbox_services_types"
+    name = "netbox-services-types"
     verbose_name = "Services Types"
     description = "Extension providing services type section"
 

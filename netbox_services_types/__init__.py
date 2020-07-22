@@ -1,7 +1,7 @@
 from extras.plugins import PluginConfig
 
 class ServicesTypesConfig(PluginConfig):
-    name = "netbox-services-types"
+    name = "netbox_services_types"
     verbose_name = "Services Types"
     description = "Extension providing services type section"
 
@@ -19,7 +19,7 @@ class ServicesTypesConfig(PluginConfig):
     }
 
     # Base URL path. If not set, the plugin name will be used.
-    base_url = 'ipam/services-types'
+    base_url = 'services-types'
 
     # Caching config
     caching_config = {}

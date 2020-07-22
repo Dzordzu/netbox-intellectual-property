@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-dsjf
-{# {% with config=settings.PLUGINS_CONFIG.netbox_services_types %}
+{% with config=settings.PLUGINS_CONFIG.netbox_services_types %}
  <h2 class="text-center" style="margin-top: 200px">
      {% if animal %}
          The {{ serviceType.name|lower }} says
@@ -11,6 +10,5 @@ dsjf
      {% endif %}
  </h2>
  {% endwith %}
- #}
 {% endblock %}
 

@@ -6,6 +6,6 @@ from .models import ServiceType
 class ServiceTypeView(View):
     def get(self, request):
         serviceType = ServiceType.objects.first()
-        return render(request, 'netbox_services_types/service_type.html', {
+        return render(request, 'netbox_services_types/services_types_list.html', {
             'serviceType': serviceType,
         })

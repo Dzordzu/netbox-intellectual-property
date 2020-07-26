@@ -4,14 +4,14 @@ from django.db.models import Q
 from utilities.filters import NameSlugSearchFilterSet
 
 
-from .models import ServiceType
+from .models import SoftwareProvider
 
 
-class ServiceTypeFilter(NameSlugSearchFilterSet):
+class SoftwareProviderFilter(NameSlugSearchFilterSet):
     q = django_filters.CharFilter(method="search", label="Search")
 
     class Meta:
-        model = ServiceType
+        model = SoftwareProvider
         fields = ["id", "name"]
 
     def search(self, queryset, name, value):

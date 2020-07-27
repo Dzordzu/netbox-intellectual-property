@@ -11,4 +11,9 @@ menu_items = (
             PluginMenuButton('home', 'Button B', 'fa fa-warning', ButtonColorChoices.GREEN),
         )
     ),
+    PluginMenuItem(
+        permissions = ['netbox_licences.view_licence'],
+        link='plugins:netbox_licences:licences_list',
+        link_text='Licences',
+    ),
 )

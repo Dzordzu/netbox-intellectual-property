@@ -5,6 +5,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('tenancy', '0003_unicode_literals')
     ]
 
     operations = [
@@ -12,8 +13,8 @@ class Migration(migrations.Migration):
             name='SoftwareProvider',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
-                ('full_name', models.CharField(max_length=64)),
-                ('name', models.CharField(max_length=32)),
+                ('full_name', models.CharField(max_length=100)),
+                ('name', models.CharField(max_length=50)),
             ],
             options = {
                 'ordering': ['name']
@@ -35,19 +36,34 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
                 ('provider', models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareProvider')),
-                ('type', models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareType')),
+                ('softtype', models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareType')),
             ],
             options = {
                  'ordering': ['name']
             },
         ),
         migrations.CreateModel(
-            name='Licences',
+            name='LicenceType',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
+            ],
+            options = {
+                'ordering': ['name']
+            }
+        ),
+        migrations.CreateModel(
+            name='Licence',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
+                ('inventory_number', models.CharField(unique=True, max_length=50)),
+                ('licencetype', models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='LicenceType')),
+                ('date_created', models.DateTimeField(auto_now=True)),
+                ('date_valid', models.DateField()),
                 ('amount', models.IntegerField()),
-                ('software', models.ForeignKey(on_delete=models.deletion.CASCADE,to='Software')),
+                ('software', models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='Software')),
+                ('tenant', models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='tenancy.Tenant')),
+                ('site', models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='dcim.Site')),
             ],
             options = {
                 'ordering': ['name']

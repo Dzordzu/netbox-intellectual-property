@@ -3,8 +3,8 @@ from utilities.choices import ButtonColorChoices
 
 menu_items = (
     PluginMenuItem(
-        permissions = ['netbox_intellectual_property.view_softwareprovider'],
-        link='plugins:netbox_intellectual_property:software_providers_list',
+        permissions = ['netbox_licences.view_softwareprovider'],
+        link='plugins:netbox_licences:software_providers_list',
         link_text='Software Providers',
         buttons=(
             PluginMenuButton('home', 'Button A', 'fa fa-info', ButtonColorChoices.BLUE),

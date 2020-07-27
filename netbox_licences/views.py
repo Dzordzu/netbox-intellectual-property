@@ -13,9 +13,9 @@ from .models import SoftwareProvider
 from .tables import SoftwareProviderTable
 
 class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
-    permission_required = 'netbox_intellectual_property.view_softwareprovider'
+    permission_required = 'netbox_licences.view_softwareprovider'
     queryset = SoftwareProvider.objects.all()
     filterset = SoftwareProviderFilter
     filterset_form = SoftwareProviderFilterForm
     table = SoftwareProviderTable
-    template_name = "netbox_intellectual_property/software_providers_list.html"
+    template_name = "netbox_licences/software_providers_list.html"

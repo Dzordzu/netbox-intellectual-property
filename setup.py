@@ -7,7 +7,10 @@ setup(
     url='https://github.com/Dzordzu/netbox-licences',
     author='Tomasz Durda',
     license='MIT',
-    install_requires=[],
+    install_requires=['setuptools-git'],
     packages=find_packages(),
-    include_package_data=True
+    package_data= {
+       '': ['*.html', '*.htm', "*.py"],
+    },
+    # include_package_data=True
 )

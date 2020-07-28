@@ -9,8 +9,5 @@ setup(
     license='MIT',
     install_requires=['setuptools-git'],
     packages=find_packages(),
-    package_data= {
-       '': ['*.html', '*.htm', "*.py"],
-    },
-    # include_package_data=True
+    include_package_data=True
 )

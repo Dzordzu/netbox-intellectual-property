@@ -40,19 +40,19 @@ class LicencesFilter(django_filters.FilterSet):
 
     inventory_number = django_filters.CharFilter(method="search_inv_num", label="Inventory Name (only)")
 
-    #  software = TreeNodeMultipleChoiceFilter(
-    #      queryset = Software.objects.all(),
-    #      field_name = "software",
-    #      lookup_expr='in',
-    #      to_field_name='slug',
-    #      label = "Software"
-    #  )
+    software = TreeNodeMultipleChoiceFilter(
+        queryset = Software.objects.all(),
+        field_name = "software",
+        lookup_expr='in',
+        to_field_name='software__slug',
+        label = "Software"
+    )
 
     site = TreeNodeMultipleChoiceFilter(
         queryset = Site.objects.all(),
         field_name = "site",
         lookup_expr='in',
-        to_field_name='slug',
+        to_field_name='site__slug',
         label = "Site"
     )
 

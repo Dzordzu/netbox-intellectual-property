@@ -33,16 +33,18 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     # software = DynamicModelMultipleChoiceField(
     #     queryset=Software.objects.all(),
     #     required=False,
-    #     widget=StaticSelect2Multiple()
+    #     to_field_name="software__slug",
+    #     widget=APISelectMultiple(
+    #         value_field="software__slug",
+    #     )
     # )
-
 
     site = DynamicModelMultipleChoiceField(
         queryset=Site.objects.all(),
-        to_field_name="slug",
         required=False,
+        to_field_name="site__slug",
          widget=APISelectMultiple(
-            value_field="slug",
+            value_field="site__slug",
         )
     )
 
@@ -52,5 +54,5 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
             "q",
             "inventory_number",
             "site",
-        #     "software"
+            # "software"
         ]

@@ -28,4 +28,3 @@ class LicenceAdmin(admin.ModelAdmin):
         'tenant',
         'site'
     )
-

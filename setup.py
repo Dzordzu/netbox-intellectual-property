@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='netbox-licences',
-    version='0.1',
+    version='0.1.3',
     description='Provides licences for netbox',
     long_description=README,
     long_description_content_type='text/markdown',
@@ -23,6 +23,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',

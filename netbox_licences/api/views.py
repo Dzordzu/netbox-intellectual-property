@@ -4,9 +4,9 @@ from .serializers import SoftwareSerializer, LicenceSerializer
 
 class SoftwareViewSet(ModelViewSet):
     queryset = Software.objects.all()
-    serializer_class = Software
+    serializer_class = SoftwareSerializer
 
 class LicenceViewSet(ModelViewSet):
     queryset = Licence.objects.all()
-    serializer_class = Licence
+    serializer_class = LicenceSerializer
 

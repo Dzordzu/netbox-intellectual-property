@@ -1,8 +1,5 @@
 from rest_framework.serializers import ModelSerializer
 from netbox_licences.models import Licence, Software
-import sys
-
-sys.exit()
 
 class SoftwareSerializer(ModelSerializer):
     class Meta:

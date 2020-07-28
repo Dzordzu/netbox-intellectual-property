@@ -1,1 +1,3 @@
-netbox_services_types.egg*
+*.egg-info
+build
+dist

@@ -47,7 +47,7 @@ class SoftwareFilter(django_filters.FilterSet):
             "id",
             "name",
             "provider",
-            "softtype",
+            "software_type",
         ]
 
     def search(self, queryset, name, value):

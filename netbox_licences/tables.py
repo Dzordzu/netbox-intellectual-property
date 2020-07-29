@@ -16,7 +16,7 @@ class LicenceTable(BaseTable):
         model = Licence
         fields = (
             "inventory_number",
-            "licencetype",
+            "licence_type",
             "date_created",
             "date_valid",
             "amount",

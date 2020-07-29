@@ -19,13 +19,13 @@ class SoftwareType(NamedModel): pass
 
 class Software(NamedModel):
     provider = models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareProvider')
-    softtype = models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareType')
+    software_type = models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareType')
 
 class LicenceType(NamedModel): pass
 
 class Licence(models.Model):
     inventory_number =  models.CharField(unique=True, max_length=50)
-    licencetype =  models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='LicenceType')
+    licence_type =  models.ForeignKey(null=True,on_delete=models.deletion.CASCADE,to='LicenceType')
     date_created =  models.DateTimeField(auto_now=True)
     date_valid =  models.DateField()
     amount = models.IntegerField()

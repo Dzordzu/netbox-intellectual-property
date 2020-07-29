@@ -11,7 +11,7 @@ class SoftwareTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Software)
 class SoftwareAdmin(admin.ModelAdmin):
-    list_display = ('name','softtype','provider',)
+    list_display = ('name','software_type','provider',)
 
 @admin.register(LicenceType)
 class LicenceTypeAdmin(admin.ModelAdmin):
@@ -19,8 +19,9 @@ class LicenceTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Licence)
 class LicenceAdmin(admin.ModelAdmin):
-    list_display = ('inventory_number',
-        'licencetype',
+    list_display = (
+        'inventory_number',
+        'licence_type',
         'date_created',
         'date_valid',
         'amount',

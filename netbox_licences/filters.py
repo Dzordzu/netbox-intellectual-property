@@ -66,23 +66,27 @@ class LicencesFilter(django_filters.FilterSet):
 
     q = django_filters.CharFilter(method="search", label="Search")
 
-    inventory_number = django_filters.CharFilter(method="search_inv_num", label="Inventory Name (only)")
-
     software = django_filters.ModelMultipleChoiceFilter(
         queryset = Software.objects.all(),
-        field_name = 'licences__name',
-        lookup_expr='in',
-        to_field_name='name',
+        # field_name = 'software__id',
+        # lookup_expr='in',
+        # to_field_name='id', # CANNOT resolve into field
         label = "Software"
     )
 
-    site = django_filters.ModelMultipleChoiceFilter(
-        queryset = Site.objects.all(),
-        field_name = 'site',
-        lookup_expr='in',
-        to_field_name='slug',
+    site_id = django_filters.ModelMultipleChoiceFilter(
+        queryset=Site.objects.all(),
         label = "Site"
     )
+
+    # Use it when need children data
+    # site = django_filters.ModelMultipleChoiceFilter(
+    #     queryset = Site.objects.all(),
+    #     field_name = 'site__slug',
+    #     lookup_expr='in',
+    #     to_field_name='slug',
+    #     label = "Site"
+    # )
 
     class Meta:
         model = Licence
@@ -103,9 +107,6 @@ class LicencesFilter(django_filters.FilterSet):
         qs_filter = (
             Q(id__icontains=value)
             | Q(inventory_number__icontains=value)
-            | Q(software__icontains=value)
-            | Q(site__icontains=value)
-            | Q(tenant__icontains=value)
         )
         return queryset.filter(qs_filter)
 

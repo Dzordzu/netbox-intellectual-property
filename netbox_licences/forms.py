@@ -28,12 +28,10 @@ class CommonLicencesFilterForm(BootstrapMixin, forms.ModelForm):
 class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     q = forms.CharField(required=False, label="Search")
 
-    inventory_number = forms.CharField(required=False, label="Inventory Number")
-
     software = DynamicModelMultipleChoiceField(
         queryset=Software.objects.all(),
         required=False,
-        to_field_name="name",
+        # to_field_name="id",
         widget=APISelectMultiple(
             api_url="/api/plugins/licences/software/",
         )
@@ -42,17 +40,16 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     site = DynamicModelMultipleChoiceField(
         queryset=Site.objects.all(),
         required=False,
-        to_field_name="slug",
-         widget=APISelectMultiple(
-            value_field="slug",
-        )
+        # to_field_name="slug",
+        # widget=APISelectMultiple(
+        #     value_field="slug",
+        # )
     )
 
     class Meta:
         model = Licence
         fields = [
             "q",
-            "inventory_number",
             "site",
             "software"
         ]

@@ -36,6 +36,7 @@ class CommonLicencesFilter(BaseFilterSet):
 
 
 
+
 class SoftwareFilter(django_filters.FilterSet):
 
     q = django_filters.CharFilter(method="search", label="Search")
@@ -67,19 +68,19 @@ class LicencesFilter(django_filters.FilterSet):
 
     inventory_number = django_filters.CharFilter(method="search_inv_num", label="Inventory Name (only)")
 
-    software = TreeNodeMultipleChoiceFilter(
+    software = django_filters.ModelMultipleChoiceFilter(
         queryset = Software.objects.all(),
-        field_name = "software",
+        field_name = 'software',
         lookup_expr='in',
-        to_field_name='software__id',
+        to_field_name='id',
         label = "Software"
     )
 
-    site = TreeNodeMultipleChoiceFilter(
+    site = django_filters.ModelMultipleChoiceFilter(
         queryset = Site.objects.all(),
-        field_name = "site",
+        field_name = 'site',
         lookup_expr='in',
-        to_field_name='site__slug',
+        to_field_name='slug',
         label = "Site"
     )
 
@@ -102,7 +103,7 @@ class LicencesFilter(django_filters.FilterSet):
         qs_filter = (
             Q(id__icontains=value)
             | Q(inventory_number__icontains=value)
-            | Q(software_number__icontains=value)
+            | Q(software__icontains=value)
             | Q(site__icontains=value)
             | Q(tenant__icontains=value)
         )

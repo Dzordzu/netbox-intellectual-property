@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='netbox-licences',
-    version='0.1.3',
+    version='0.1.4-rc1',
     description='Provides licences for netbox',
     long_description=README,
     long_description_content_type='text/markdown',

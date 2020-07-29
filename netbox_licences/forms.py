@@ -30,14 +30,14 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
 
     inventory_number = forms.CharField(required=False, label="Inventory Number")
 
-    # software = DynamicModelMultipleChoiceField(
-    #     queryset=Software.objects.all(),
-    #     required=False,
-    #     to_field_name="software__slug",
-    #     widget=APISelectMultiple(
-    #         value_field="software__slug",
-    #     )
-    # )
+    software = DynamicModelMultipleChoiceField(
+        queryset=Software.objects.all(),
+        required=False,
+        to_field_name="software__id",
+        widget=APISelectMultiple(
+            api_url="/api/plugins/licences/software/",
+        )
+    )
 
     site = DynamicModelMultipleChoiceField(
         queryset=Site.objects.all(),
@@ -54,5 +54,5 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
             "q",
             "inventory_number",
             "site",
-            # "software"
+            "software"
         ]

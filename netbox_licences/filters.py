@@ -34,6 +34,33 @@ class CommonLicencesFilter(BaseFilterSet):
         )
         return queryset.filter(qs_filter)
 
+
+
+class SoftwareFilter(django_filters.FilterSet):
+
+    q = django_filters.CharFilter(method="search", label="Search")
+
+    class Meta:
+        model = Software
+        fields = [
+            "id",
+            "name",
+            "provider",
+            "softtype",
+        ]
+
+    def search(self, queryset, name, value):
+        if not value.strip():
+            return queryset
+        qs_filter = (
+            Q(id__icontains=value)
+            | Q(name__icontains=value)
+        )
+        return queryset.filter(qs_filter)
+
+
+
+
 class LicencesFilter(django_filters.FilterSet):
 
     q = django_filters.CharFilter(method="search", label="Search")
@@ -44,7 +71,7 @@ class LicencesFilter(django_filters.FilterSet):
         queryset = Software.objects.all(),
         field_name = "software",
         lookup_expr='in',
-        to_field_name='software__slug',
+        to_field_name='software__id',
         label = "Software"
     )
 
@@ -57,7 +84,7 @@ class LicencesFilter(django_filters.FilterSet):
     )
 
     class Meta:
-        most = Licence
+        model = Licence
         fields = [
             "id",
             "inventory_number",

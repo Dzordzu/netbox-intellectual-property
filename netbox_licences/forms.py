@@ -33,7 +33,7 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     software = DynamicModelMultipleChoiceField(
         queryset=Software.objects.all(),
         required=False,
-        to_field_name="id",
+        to_field_name="name",
         widget=APISelectMultiple(
             api_url="/api/plugins/licences/software/",
         )
@@ -45,9 +45,6 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
         to_field_name="slug",
          widget=APISelectMultiple(
             value_field="slug",
-            filter_for={
-                'device_id': 'site',
-            }
         )
     )
 

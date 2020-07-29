@@ -70,9 +70,9 @@ class LicencesFilter(django_filters.FilterSet):
 
     software = django_filters.ModelMultipleChoiceFilter(
         queryset = Software.objects.all(),
-        field_name = 'software',
+        field_name = 'licences__name',
         lookup_expr='in',
-        to_field_name='id',
+        to_field_name='name',
         label = "Software"
     )
 

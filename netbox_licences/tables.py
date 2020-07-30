@@ -4,9 +4,12 @@ from utilities.tables import BaseTable, ToggleColumn
 from .models import SoftwareProvider, Licence
 
 class SoftwareProviderTable(BaseTable):
+    pk = ToggleColumn()
+
     class Meta(BaseTable.Meta):
         model = SoftwareProvider
         fields = (
+            "pk",
             "name",
             "full_name"
         )

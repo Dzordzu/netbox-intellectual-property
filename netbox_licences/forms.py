@@ -65,11 +65,6 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
 
 class SoftwareProviderForm(BootstrapMixin, forms.ModelForm):
 
-    pk = forms.ModelMultipleChoiceField(
-        queryset=SoftwareProvider.objects.all(),
-        widget=forms.MultipleHiddenInput()
-    )
-
     name = forms.CharField(
         required=True, label="Short name", help_text="Short name of the software provider"
     )

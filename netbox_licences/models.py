@@ -1,5 +1,6 @@
 from django.db import models
 from .utilities.models import NamedModel
+# from utilities.models import ChangeLoggedModel
 
 class SoftwareProvider(NamedModel):
     full_name = models.CharField(max_length=64)

@@ -23,7 +23,7 @@ class CommonLicencesFilter(BaseFilterSet):
 
     class Meta:
         model = SoftwareProvider
-        fields = ["id", "name"]
+        fields = ["id", "name", "full_name"]
 
     def search(self, queryset, name, value):
         if not value.strip():
@@ -31,6 +31,7 @@ class CommonLicencesFilter(BaseFilterSet):
         qs_filter = (
             Q(id__icontains=value)
             | Q(name__icontains=value)
+            | Q(full_name__icontains=value)
         )
         return queryset.filter(qs_filter)
 

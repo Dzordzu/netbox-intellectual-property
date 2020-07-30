@@ -79,4 +79,3 @@ class SoftwareProviderForm(BootstrapMixin, forms.ModelForm):
             "name",
             "full_name"
         ]
-

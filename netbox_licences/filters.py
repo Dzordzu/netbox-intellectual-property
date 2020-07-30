@@ -68,9 +68,6 @@ class LicencesFilter(django_filters.FilterSet):
 
     software = django_filters.ModelMultipleChoiceFilter(
         queryset = Software.objects.all(),
-        # field_name = 'software__id',
-        # lookup_expr='in',
-        # to_field_name='id', # CANNOT resolve into field
         label = "Software"
     )
 
@@ -79,14 +76,8 @@ class LicencesFilter(django_filters.FilterSet):
         label = "Site"
     )
 
-    # Use it when need children data
-    # site = django_filters.ModelMultipleChoiceFilter(
-    #     queryset = Site.objects.all(),
-    #     field_name = 'site__slug',
-    #     lookup_expr='in',
-    #     to_field_name='slug',
-    #     label = "Site"
-    # )
+    date_valid = django_filters.DateFromToRangeFilter()
+
 
     class Meta:
         model = Licence

@@ -9,7 +9,8 @@ from utilities.forms import (
     APISelectMultiple,
     DynamicModelMultipleChoiceField,
     StaticSelect2Multiple,
-    BootstrapMixin
+    BootstrapMixin,
+    DatePicker
 )
 
 from dcim.models import Site
@@ -31,7 +32,6 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     software = DynamicModelMultipleChoiceField(
         queryset=Software.objects.all(),
         required=False,
-        # to_field_name="id",
         widget=APISelectMultiple(
             api_url="/api/plugins/licences/software/",
         )
@@ -40,16 +40,25 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
     site = DynamicModelMultipleChoiceField(
         queryset=Site.objects.all(),
         required=False,
-        # to_field_name="slug",
-        # widget=APISelectMultiple(
-        #     value_field="slug",
-        # )
     )
+
+    date_valid_after = forms.DateField(
+        required=False,
+        input_formats='%Y,%m,%d',
+        widget=DatePicker()
+    )
+
+    date_valid_before = forms.DateField(
+        required=False,
+        input_formats='%Y,%m,%d',
+        widget=DatePicker()
+    )
+
 
     class Meta:
         model = Licence
         fields = [
             "q",
             "site",
-            "software"
+            "software",
         ]

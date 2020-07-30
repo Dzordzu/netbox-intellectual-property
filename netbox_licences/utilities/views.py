@@ -4,7 +4,6 @@ from utilities.views import BulkDeleteView, BulkImportView, ObjectEditView, Obje
 from pydoc import locate
 
 class CRUDViewGenerator:
-
     """
         Generator for view classes
         Simple metaclass usage in order to create basic CRUD views.

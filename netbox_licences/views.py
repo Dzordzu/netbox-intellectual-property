@@ -23,9 +23,15 @@ from .tables import (
     LicenceTable
 )
 
+from .utilities.views import CRUDGenerator
+
 ####
 ## SoftwareProvider
 ####
+
+#software_provider_generator = CRUDGenerator("SoftwareProvider")
+#SoftwareProviderListView = software_provider_generator.list_view()
+
 
 class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
     """ List Software Providers """
@@ -55,6 +61,11 @@ class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, BulkDeleteView):
     table = SoftwareProviderTable
     default_return_url = "plugins:netbox_licences:software_providers_list"
 
+class SoftwareProviderEditView(PermissionRequiredMixin, ObjectEditView):
+   """ Edit existing Software Provider """
+   permission_required = 'netbox_licences.edit_softwareprovider'
+   queryset = SoftwareProvider.objects.all()
+   model = SoftwareProvider
 
 
 

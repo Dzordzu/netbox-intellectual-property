@@ -11,7 +11,8 @@ from .filters import (
 )
 from .forms import (
     CommonLicencesFilterForm,
-    LicencesFilterForm
+    LicencesFilterForm,
+    SoftwareProviderForm
 )
 from .models import (
     SoftwareProvider,
@@ -29,6 +30,14 @@ class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
     filterset_form = CommonLicencesFilterForm
     table = SoftwareProviderTable
     template_name = "netbox_licences/software_providers_list.html"
+
+class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
+    permission_required = 'netbox_licences.add_softwareprovider'
+    model=SoftwareProvider
+    queryset = SoftwareProvider.objects.all()
+    model_form = SoftwareProviderForm
+    template_name = "netbox_licences/software_providers_edit.html"
+    default_return_url = "plugins:netbox_licences:software_providers_list"
 
 
 class LicenceListView(PermissionRequiredMixin, ObjectListView):

@@ -62,3 +62,20 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
             "site",
             "software",
         ]
+
+class SoftwareProviderForm(BootstrapMixin, forms.ModelForm):
+    name = forms.CharField(
+        required=True, label="Short name", help_text="Short name of the software provider"
+    )
+
+    full_name = forms.CharField(
+        required=True, label="Full name", help_text="Full name of the software provider"
+    )
+
+    class Meta:
+        model = SoftwareProvider
+        fields = [
+            "name",
+            "full_name"
+        ]
+

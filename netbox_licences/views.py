@@ -39,7 +39,7 @@ class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
     template_name = "netbox_licences/software_providers_edit.html"
     default_return_url = "plugins:netbox_licences:software_providers_list"
 
-class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, ObjectEditView):
+class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, BulkDeleteView):
     permission_required = 'netbox_licences.delete_softwareprovider'
     queryset = SoftwareProvider.objects.all()
     filterset = CommonLicencesFilter

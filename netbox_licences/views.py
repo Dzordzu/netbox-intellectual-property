@@ -32,16 +32,7 @@ from .utilities.views import CRUDViewGenerator
 software_provider_generator = CRUDViewGenerator("SoftwareProvider")
 
 SoftwareProviderListView = software_provider_generator.list()
-
-class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
-    """ Create a new Software Provider """
-    permission_required = 'netbox_licences.add_softwareprovider'
-    model=SoftwareProvider
-    queryset = SoftwareProvider.objects.all()
-    model_form = SoftwareProviderForm
-    template_name = "netbox_licences/software_providers_edit.html"
-    default_return_url = "plugins:netbox_licences:software_providers_list"
-
+SoftwareProviderCreateView = software_provider_generator.create()
 
 class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, BulkDeleteView):
     """ Remove multiple Software Providers """

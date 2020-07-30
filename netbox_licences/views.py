@@ -6,11 +6,11 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from utilities.views import BulkDeleteView, BulkImportView, ObjectEditView, ObjectListView
 
 from .filters import (
-    CommonLicencesFilter,
+    SoftwareProviderFilter,
     LicencesFilter
 )
 from .forms import (
-    CommonLicencesFilterForm,
+    SoftwareProviderFilterForm,
     LicencesFilterForm,
     SoftwareProviderForm
 )
@@ -37,8 +37,8 @@ class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
     """ List Software Providers """
     permission_required = 'netbox_licences.view_softwareprovider'
     queryset = SoftwareProvider.objects.all()
-    filterset = CommonLicencesFilter
-    filterset_form = CommonLicencesFilterForm
+    filterset = SoftwareProviderFilter
+    filterset_form = SoftwareProviderFilterForm
     table = SoftwareProviderTable
     template_name = "netbox_licences/software_providers_list.html"
 
@@ -57,7 +57,7 @@ class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, BulkDeleteView):
     """ Remove multiple Software Providers """
     permission_required = 'netbox_licences.delete_softwareprovider'
     queryset = SoftwareProvider.objects.all()
-    filterset = CommonLicencesFilter
+    filterset = SoftwareProviderFilter
     table = SoftwareProviderTable
     default_return_url = "plugins:netbox_licences:software_providers_list"
 

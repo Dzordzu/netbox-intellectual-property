@@ -18,7 +18,7 @@ from extras.filters import CustomFieldFilterSet, LocalConfigContextFilterSet, Cr
 from .models import SoftwareProvider, Software, Licence
 
 
-class CommonLicencesFilter(BaseFilterSet):
+class SoftwareProviderFilter(BaseFilterSet):
     q = django_filters.CharFilter(method="search", label="Search")
 
     class Meta:

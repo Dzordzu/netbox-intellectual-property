@@ -16,7 +16,7 @@ from utilities.forms import (
 from dcim.models import Site
 
 
-class CommonLicencesFilterForm(BootstrapMixin, forms.ModelForm):
+class SoftwareProviderFilterForm(BootstrapMixin, forms.ModelForm):
 
     q = forms.CharField(required=False, label="Search")
 

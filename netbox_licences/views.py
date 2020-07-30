@@ -23,7 +23,12 @@ from .tables import (
     LicenceTable
 )
 
+####
+## SoftwareProvider
+####
+
 class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
+    """ List Software Providers """
     permission_required = 'netbox_licences.view_softwareprovider'
     queryset = SoftwareProvider.objects.all()
     filterset = CommonLicencesFilter
@@ -31,7 +36,9 @@ class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
     table = SoftwareProviderTable
     template_name = "netbox_licences/software_providers_list.html"
 
+
 class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
+    """ Create a new Software Provider """
     permission_required = 'netbox_licences.add_softwareprovider'
     model=SoftwareProvider
     queryset = SoftwareProvider.objects.all()
@@ -39,12 +46,18 @@ class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
     template_name = "netbox_licences/software_providers_edit.html"
     default_return_url = "plugins:netbox_licences:software_providers_list"
 
+
 class SoftwareProviderBulkDeleteView(PermissionRequiredMixin, BulkDeleteView):
+    """ Remove multiple Software Providers """
     permission_required = 'netbox_licences.delete_softwareprovider'
     queryset = SoftwareProvider.objects.all()
     filterset = CommonLicencesFilter
     table = SoftwareProviderTable
     default_return_url = "plugins:netbox_licences:software_providers_list"
+
+
+
+
 
 class LicenceListView(PermissionRequiredMixin, ObjectListView):
     permission_required = 'netbox_licences.view_licence'

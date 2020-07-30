@@ -23,25 +23,15 @@ from .tables import (
     LicenceTable
 )
 
-from .utilities.views import CRUDGenerator
+from .utilities.views import CRUDViewGenerator
 
 ####
 ## SoftwareProvider
 ####
 
-software_provider_generator = CRUDGenerator("SoftwareProvider")
-SoftwareProviderListView = software_provider_generator.list_view()
+software_provider_generator = CRUDViewGenerator("SoftwareProvider")
 
-
-#class SoftwareProviderListView(PermissionRequiredMixin, ObjectListView):
-#    """ List Software Providers """
-#    permission_required = 'netbox_licences.view_softwareprovider'
-#    queryset = SoftwareProvider.objects.all()
-#    filterset = SoftwareProviderFilter
-#    filterset_form = SoftwareProviderFilterForm
-#    table = SoftwareProviderTable
-#    template_name = "netbox_licences/software_providers_list.html"
-
+SoftwareProviderListView = software_provider_generator.list()
 
 class SoftwareProviderCreateView(PermissionRequiredMixin, ObjectEditView):
     """ Create a new Software Provider """

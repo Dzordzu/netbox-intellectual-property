@@ -3,12 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from utilities.views import BulkDeleteView, BulkImportView, ObjectEditView, ObjectListView
 from pydoc import locate
 
-from netbox_licences.filters import *
-from netbox_licences.forms import *
-from netbox_licences.models import *
-from netbox_licences.tables import *
-
-class CRUDGenerator:
+class CRUDViewGenerator:
 
     name = ""
     package = "netbox_licences"
@@ -17,7 +12,7 @@ class CRUDGenerator:
         self.name = name
 
 
-    def list_view(self):
+    def list(self):
         return type(
             self.name + "ListView",
             (PermissionRequiredMixin, ObjectListView),
@@ -30,3 +25,4 @@ class CRUDGenerator:
                 "template_name": "netbox_licences/" + re.sub(r'(?<!^)(?=[A-Z])', '_', self.name).lower() + "s_list.html"
             }
         )
+

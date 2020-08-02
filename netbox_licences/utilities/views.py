@@ -47,7 +47,7 @@ class CRUDViewGenerator:
                 "model": locate(self.package + ".models." + self.name),
                 "queryset": locate(self.package + ".models." + self.name).objects.all(),
                 "model_form": locate(self.package + ".forms." + self.name + "Form"),
-                "template_name": "netbox_licences/" + re.sub(r'(?<!^)(?=[A-Z])', '_', self.name).lower() + "s_edit.html",
+                "template_name": "netbox_licences/common_edit.html",
                 "table": locate(self.package + ".tables." + self.name + "Table"),
                 "default_return_url": "plugins:netbox_licences:" + self.__camel_to_snake_name() + "s_list",
             }

@@ -16,11 +16,11 @@ from .forms import (
 )
 from .models import (
     SoftwareProvider,
-    Licence
+    Licence,
 )
 from .tables import (
     SoftwareProviderTable,
-    LicenceTable
+    LicenceTable,
 )
 
 from .utilities.views import CRUDViewGenerator
@@ -30,7 +30,6 @@ from .utilities.views import CRUDViewGenerator
 ####
 
 software_provider_generator = CRUDViewGenerator("SoftwareProvider")
-
 SoftwareProviderListView = software_provider_generator.list()
 SoftwareProviderCreateView = software_provider_generator.create()
 SoftwareProviderBulkDeleteView = software_provider_generator.bulk_delete()
@@ -41,6 +40,10 @@ class SoftwareProviderEditView(PermissionRequiredMixin, ObjectEditView):
    queryset = SoftwareProvider.objects.all()
    model = SoftwareProvider
 
+software_type_generator = CRUDViewGenerator("SoftwareType")
+SoftwareTypeListView = software_type_generator.list()
+SoftwareTypeCreateView = software_type_generator.create()
+SoftwareTypeBulkDeleteView = software_type_generator.bulk_delete()
 
 
 class LicenceListView(PermissionRequiredMixin, ObjectListView):

@@ -16,6 +16,19 @@ menu_items = (
         )
     ),
     PluginMenuItem(
+        permissions = ['netbox_licences.view_softwaretype'],
+        link='plugins:netbox_licences:software_types_list',
+        link_text='Software Types',
+        buttons=(
+            PluginMenuButton(
+                'plugins:netbox_licences:software_types_add',
+                'Add Software Type',
+                'fa fa-plus',
+                ButtonColorChoices.GREEN
+            ),
+        )
+    ),
+    PluginMenuItem(
         permissions = ['netbox_licences.view_licence'],
         link='plugins:netbox_licences:licences_list',
         link_text='Licences',

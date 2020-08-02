@@ -1,7 +1,12 @@
 from django import forms
 from django_rq import get_queue
 
-from .models import SoftwareProvider, Licence, Software
+from .models import (
+    SoftwareProvider,
+    Licence,
+    Software,
+    SoftwareType,
+)
 
 from mptt.forms import TreeNodeChoiceField
 
@@ -22,6 +27,16 @@ class SoftwareProviderFilterForm(BootstrapMixin, forms.ModelForm):
 
     class Meta:
         model = SoftwareProvider
+        fields = [
+            "q",
+        ]
+
+class SoftwareTypeFilterForm(BootstrapMixin, forms.ModelForm):
+
+    q = forms.CharField(required=False, label="Search")
+
+    class Meta:
+        model = SoftwareType
         fields = [
             "q",
         ]

@@ -15,7 +15,7 @@ from utilities.filters import (
 
 from extras.filters import CustomFieldFilterSet, LocalConfigContextFilterSet, CreatedUpdatedFilterSet
 
-from .models import SoftwareProvider, Software, Licence
+from .models import SoftwareProvider, Software, Licence, SoftwareType
 
 
 class SoftwareProviderFilter(BaseFilterSet):
@@ -36,6 +36,21 @@ class SoftwareProviderFilter(BaseFilterSet):
         return queryset.filter(qs_filter)
 
 
+class SoftwareTypeFilter(BaseFilterSet):
+    q = django_filters.CharFilter(method="search", label="Search")
+
+    class Meta:
+        model = SoftwareType
+        fields = ["id", "name",]
+
+    def search(self, queryset, name, value):
+        if not value.strip():
+            return queryset
+        qs_filter = (
+            Q(id__icontains=value)
+            | Q(name__icontains=value)
+        )
+        return queryset.filter(qs_filter)
 
 
 class SoftwareFilter(django_filters.FilterSet):

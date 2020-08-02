@@ -4,13 +4,13 @@
 {% block content %}
 <div class="pull-right noprint">
     {% if permissions.add %}
-        {% add_button 'plugins:netbox_licences:software_providers_add' %}
+    {% add_button add_button_link %}
     {% endif %}
 </div>
 <h1>{% block title %}{{ title_text }}{% endblock %}</h1>
 <div class="row">
    <div class="col-md-9">
-     {% include 'utilities/obj_table.html' with bulk_delete_url="plugins:netbox_licences:software_providers_delete" %}
+      {% include 'utilities/obj_table.html' with bulk_delete_url=delete_button_link %}
     </div>
 	<div class="col-md-3 noprint">
 		{% include 'inc/search_panel.html' %}

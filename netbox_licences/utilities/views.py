@@ -34,7 +34,15 @@ class CRUDViewGenerator:
                 "filterset_form": locate(self.package + ".forms." + self.name + "FilterForm"),
                 "table": locate(self.package + ".tables." + self.name + "Table"),
                 "template_name": "netbox_licences/common_list.html",
-                "extra_context": lambda self, name=self.__insert_space_name() : {"title_text" : name}
+                "extra_context": lambda
+                    self,
+                    name=self.__insert_space_name(),
+                    add_button_link=f"plugins:{ self.package }:{ self.__camel_to_snake_name() }s_add",
+                    delete_button_link=f"plugins:{ self.package }:{ self.__camel_to_snake_name() }s_delete" : {
+                        "title_text" : name,
+                        "add_button_link": add_button_link,
+                        "delete_button_link": delete_button_link,
+                    }
             }
         )
 

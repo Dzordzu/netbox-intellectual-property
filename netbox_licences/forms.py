@@ -94,3 +94,17 @@ class SoftwareProviderForm(BootstrapMixin, forms.ModelForm):
             "name",
             "full_name"
         ]
+
+
+class SoftwareTypeForm(BootstrapMixin, forms.ModelForm):
+
+    name = forms.CharField(
+        required=True, label="Name", help_text="Name of the software type"
+    )
+
+
+    class Meta:
+        model = SoftwareType
+        fields = [
+            "name",
+        ]

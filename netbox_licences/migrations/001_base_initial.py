@@ -61,9 +61,9 @@ class Migration(migrations.Migration):
                 ('date_created', models.DateTimeField(auto_now=True)),
                 ('date_valid', models.DateField()),
                 ('amount', models.IntegerField()),
-                ('software', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.CASCADE,to='Software')),
-                ('tenant', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.CASCADE,to='tenancy.Tenant')),
-                ('site', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.CASCADE,to='dcim.Site')),
+                ('software', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.PROTECT,to='Software')),
+                ('tenant', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.SET_NULL,to='tenancy.Tenant')),
+                ('site', models.ForeignKey(blank=True, null=True,on_delete=models.deletion.SET_NULL,to='dcim.Site')),
             ],
             options = {
                 'ordering': ['name']

@@ -45,6 +45,10 @@ SoftwareTypeListView = software_type_generator.list()
 SoftwareTypeCreateView = software_type_generator.create()
 SoftwareTypeBulkDeleteView = software_type_generator.bulk_delete()
 
+software_generator = CRUDViewGenerator("Software")
+SoftwareListView = software_generator.list()
+SoftwareCreateView = software_generator.create()
+SoftwareBulkDeleteView = software_generator.bulk_delete()
 
 class LicenceListView(PermissionRequiredMixin, ObjectListView):
     permission_required = 'netbox_licences.view_licence'

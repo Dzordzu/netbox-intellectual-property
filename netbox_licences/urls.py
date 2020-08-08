@@ -5,6 +5,7 @@ from .utilities.urls import URLPatternGenerator
 _urlpatterns_generators = [
     URLPatternGenerator("SoftwareProvider"),
     URLPatternGenerator("SoftwareType"),
+    URLPatternGenerator("Software"),
 ]
 
 urlpatterns = [

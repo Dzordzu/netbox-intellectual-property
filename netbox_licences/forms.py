@@ -7,12 +7,13 @@ from .models import (
     Software,
     SoftwareType,
 )
-
 from mptt.forms import TreeNodeChoiceField
 
 from utilities.forms import (
     APISelectMultiple,
+    APISelect,
     DynamicModelMultipleChoiceField,
+    DynamicModelChoiceField,
     StaticSelect2Multiple,
     BootstrapMixin,
     DatePicker
@@ -39,6 +40,34 @@ class SoftwareTypeFilterForm(BootstrapMixin, forms.ModelForm):
         model = SoftwareType
         fields = [
             "q",
+        ]
+
+class SoftwareFilterForm(BootstrapMixin, forms.ModelForm):
+
+    q = forms.CharField(required=False, label="Search")
+
+    software_type = DynamicModelMultipleChoiceField(
+        queryset=SoftwareType.objects.all(),
+        required=False,
+        widget=APISelectMultiple(
+            api_url="/api/plugins/licences/software-types/",
+        )
+    )
+
+    provider = DynamicModelMultipleChoiceField(
+        queryset=SoftwareProvider.objects.all(),
+        required=False,
+        widget=APISelectMultiple(
+            api_url="/api/plugins/licences/software-providers/",
+        )
+    )
+
+    class Meta:
+        model = Software
+        fields = [
+            "q",
+            "software_type",
+            "provider"
         ]
 
 class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
@@ -78,6 +107,10 @@ class LicencesFilterForm(BootstrapMixin, forms.ModelForm):
             "software",
         ]
 
+
+
+
+
 class SoftwareProviderForm(BootstrapMixin, forms.ModelForm):
 
     name = forms.CharField(
@@ -107,4 +140,35 @@ class SoftwareTypeForm(BootstrapMixin, forms.ModelForm):
         model = SoftwareType
         fields = [
             "name",
+        ]
+
+
+
+class SoftwareForm(BootstrapMixin, forms.ModelForm):
+
+    name = forms.CharField(
+        required=True, label="Name", help_text="Name of the software"
+    )
+
+    software_type = DynamicModelChoiceField(
+        queryset=SoftwareType.objects.all(),
+        required=True,
+        widget=APISelect(
+            api_url="/api/plugins/licences/software-types/",
+        )
+    )
+
+    provider = DynamicModelChoiceField(
+        queryset=SoftwareProvider.objects.all(),
+        required=True,
+        widget=APISelect(
+            api_url="/api/plugins/licences/software-providers/",
+        )
+    )
+
+
+    class Meta:
+        model = Software
+        fields = [
+            "name", "provider", "software_type"
         ]

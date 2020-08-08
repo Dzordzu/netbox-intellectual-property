@@ -57,6 +57,16 @@ class SoftwareFilter(django_filters.FilterSet):
 
     q = django_filters.CharFilter(method="search", label="Search")
 
+    software_type = django_filters.ModelMultipleChoiceFilter(
+        queryset = SoftwareType.objects.all(),
+        label = "Software Type"
+    )
+
+    provider = django_filters.ModelMultipleChoiceFilter(
+        queryset = SoftwareProvider.objects.all(),
+        label = "Software Provider"
+    )
+
     class Meta:
         model = Software
         fields = [

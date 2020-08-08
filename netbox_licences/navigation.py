@@ -5,6 +5,7 @@ from .utilities.navigation import plugin_item
 menu_items = (
     plugin_item("SoftwareProvider"),
     plugin_item("SoftwareType"),
+    plugin_item("Software"),
     PluginMenuItem(
         permissions = ['netbox_licences.view_licence'],
         link='plugins:netbox_licences:licences_list',

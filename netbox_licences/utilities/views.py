@@ -1,8 +1,10 @@
 import re
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from utilities.views import BulkDeleteView, BulkImportView, ObjectEditView, ObjectListView
+from rest_framework.viewsets import ModelViewSet
 from pydoc import locate
 import inflection
+
 
 class CRUDViewGenerator:
     """
@@ -66,6 +68,17 @@ class CRUDViewGenerator:
                 "filterset": locate(self.package + ".filters." + self.name + "Filter"),
                 "table": locate(self.package + ".tables." + self.name + "Table"),
                 "default_return_url": "plugins:netbox_licences:" + inflection.tableize( self.name ) + "s_list"
+            }
+        )
+
+    def view_set(self):
+        return type(
+            self.name + "ViewSet",
+            (ModelViewSet,),
+            {
+                "queryset": locate(self.package + ".models." + self.name).objects.all(),
+                "serializer_class": locate(self.package + ".api.serializers." + self.name + "Serializer"),
+                "filterset_class": locate(self.package + ".filters." + self.name + "Filter"),
             }
         )
 

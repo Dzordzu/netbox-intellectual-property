@@ -2,21 +2,11 @@ from rest_framework.viewsets import ModelViewSet
 from netbox_licences.models import *
 from .serializers import *
 from netbox_licences.filters import *
+from netbox_licences.utilities.views import CRUDViewGenerator
 
-class SoftwareViewSet(ModelViewSet):
-    queryset = Software.objects.all()
-    serializer_class = SoftwareSerializer
-    filterset_class = SoftwareFilter
-
-class SoftwareProviderViewSet(ModelViewSet):
-    queryset = SoftwareProvider.objects.all()
-    serializer_class = SoftwareProviderSerializer
-    filterset_class = SoftwareProviderFilter
-
-class SoftwareTypeViewSet(ModelViewSet):
-    queryset = SoftwareType.objects.all()
-    serializer_class = SoftwareTypeSerializer
-    filterset_class = SoftwareTypeFilter
+SoftwareViewSet = CRUDViewGenerator("Software").view_set()
+SoftwareProviderViewSet = CRUDViewGenerator("SoftwareProvider").view_set()
+SoftwareTypeViewSet = CRUDViewGenerator("SoftwareType").view_set()
 
 class LicenceViewSet(ModelViewSet):
     queryset = Licence.objects.all()

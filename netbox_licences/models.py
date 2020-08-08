@@ -1,17 +1,28 @@
 from django.db import models
+from django.urls import reverse
 from .utilities.models import NamedModel
 # from utilities.models import ChangeLoggedModel
 
 class SoftwareProvider(NamedModel):
     full_name = models.CharField(max_length=64)
 
-class SoftwareType(NamedModel): pass
+    def get_absolute_url(self):
+        return reverse("plugins:netbox_licences:software_providers_list")
+
+class SoftwareType(NamedModel):
+    def get_absolute_url(self):
+        return reverse("plugins:netbox_licences:software_types_list")
 
 class Software(NamedModel):
     provider = models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareProvider')
     software_type = models.ForeignKey(on_delete=models.deletion.CASCADE,to='SoftwareType')
 
-class LicenceType(NamedModel): pass
+    def get_absolute_url(self):
+        return reverse("plugins:netbox_licences:softwares_list")
+
+class LicenceType(NamedModel):
+    def get_absolute_url(self):
+        return reverse("plugins:netbox_licences:softwares_list")
 
 class Licence(models.Model):
     inventory_number =  models.CharField(unique=True, max_length=50)

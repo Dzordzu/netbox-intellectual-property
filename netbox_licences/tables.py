@@ -1,10 +1,12 @@
 import django_tables2 as tables
-from utilities.tables import BaseTable, ToggleColumn, LinkColumn
+from utilities.tables import BaseTable, ToggleColumn
 
 from .models import SoftwareProvider, Licence, SoftwareType
 
 class SoftwareProviderTable(BaseTable):
     pk = ToggleColumn()
+
+    name = tables.LinkColumn()
 
     class Meta(BaseTable.Meta):
         model = SoftwareProvider
@@ -17,6 +19,8 @@ class SoftwareProviderTable(BaseTable):
 class SoftwareTypeTable(BaseTable):
     pk = ToggleColumn()
 
+    name = tables.LinkColumn()
+
     class Meta(BaseTable.Meta):
         model = SoftwareType
         fields = (
@@ -26,6 +30,8 @@ class SoftwareTypeTable(BaseTable):
 
 class SoftwareTable(BaseTable):
     pk = ToggleColumn()
+
+    name = tables.LinkColumn()
 
     class Meta(BaseTable.Meta):
         model = SoftwareType

@@ -13,7 +13,10 @@ setup(
     url='https://github.com/Dzordzu/netbox-licences',
     author='Tomasz Durda',
     license='MIT',
-    install_requires=['setuptools-git'],
+    install_requires=[
+        'setuptools-git',
+        'inflection'
+    ],
     packages=find_packages(),
     include_package_data=True,
     classifiers=[

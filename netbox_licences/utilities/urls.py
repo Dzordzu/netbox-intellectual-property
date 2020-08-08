@@ -1,0 +1,39 @@
+import inflection
+
+class URLPatternGenerator():
+
+    """Generates urls associated with given name"""
+
+    _class_name = ""
+    package = "netbox_licences"
+
+    def __init__(self, class_name):
+        self._class_name = class_name
+
+    def _endpoint(self):
+        return inflection.tableize(inflection.dasherize(self._class_name)) + "/"
+
+    def list(self):
+        view_class= inflection.camelize(self._class_name) + "ListView"
+        return path(
+            self._endpoint(),
+            locate(f"{self.package}.views.{view_class}").as_view(),
+            name=f"{inflection.tableize(self._class_name)}_list"
+        )
+
+
+    def add(self):
+        view_class= inflection.camelize(self._class_name) + "CreateView"
+        return path(
+            self._endpoint() + "add/",
+            locate(f"{self.package}.views.{view_class}").as_view(),
+            name=f"{inflection.tableize(self._class_name)}_add"
+        )
+
+    def bulkDelete(self):
+        view_class= inflection.camelize(self._class_name) + "BulkDeleteView"
+        return path(
+            self._endpoint() + "delete/",
+            locate(f"{self.package}.views.{view_class}").as_view(),
+            name=f"{inflection.tableize(self._class_name)}_delete"
+        )

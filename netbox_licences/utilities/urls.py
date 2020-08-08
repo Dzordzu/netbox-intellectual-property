@@ -1,4 +1,5 @@
 import inflection
+from django.urls import path
 
 class URLPatternGenerator():
 

@@ -2,6 +2,7 @@ import re
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from utilities.views import BulkDeleteView, BulkImportView, ObjectEditView, ObjectListView
 from pydoc import locate
+import inflection
 
 class CRUDViewGenerator:
     """
@@ -17,12 +18,6 @@ class CRUDViewGenerator:
     def __init__(self, name):
         self.name = name
 
-    def __camel_to_snake_name(self):
-        return re.sub(r'(?<!^)(?=[A-Z])', '_', self.name).lower()
-
-    def __insert_space_name(self):
-        return re.sub(r'(?<!^)(?=[A-Z])', ' ', self.name)
-
     def list(self):
         return type(
             self.name + "ListView",
@@ -36,9 +31,9 @@ class CRUDViewGenerator:
                 "template_name": "netbox_licences/common_list.html",
                 "extra_context": lambda
                     self,
-                    name=self.__insert_space_name(),
-                    add_button_link=f"plugins:{ self.package }:{ self.__camel_to_snake_name() }s_add",
-                    delete_button_link=f"plugins:{ self.package }:{ self.__camel_to_snake_name() }s_delete" : {
+                    name=inflection.pluralize(inflection.titleize(self.name)),
+                    add_button_link=f"plugins:{ self.package }:{ inflection.tableize(self.name)}_add",
+                    delete_button_link=f"plugins:{ self.package }:{ inflection.tableize(self.name) }_delete" : {
                         "title_text" : name,
                         "add_button_link": add_button_link,
                         "delete_button_link": delete_button_link,
@@ -57,7 +52,7 @@ class CRUDViewGenerator:
                 "model_form": locate(self.package + ".forms." + self.name + "Form"),
                 "template_name": "netbox_licences/common_edit.html",
                 "table": locate(self.package + ".tables." + self.name + "Table"),
-                "default_return_url": "plugins:netbox_licences:" + self.__camel_to_snake_name() + "s_list",
+                "default_return_url": "plugins:netbox_licences:" + inflection.tableize(self.name) + "_list",
             }
         )
 
@@ -70,7 +65,7 @@ class CRUDViewGenerator:
                 "queryset": locate(self.package + ".models." + self.name).objects.all(),
                 "filterset": locate(self.package + ".filters." + self.name + "Filter"),
                 "table": locate(self.package + ".tables." + self.name + "Table"),
-                "default_return_url": "plugins:netbox_licences:" + self.__camel_to_snake_name() + "s_list"
+                "default_return_url": "plugins:netbox_licences:" + inflection.tableize( self.name ) + "s_list"
             }
         )
 

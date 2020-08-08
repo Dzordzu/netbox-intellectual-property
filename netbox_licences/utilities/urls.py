@@ -16,7 +16,6 @@ class URLPatternGenerator():
         return inflection.dasherize(inflection.tableize(self._class_name)) + "/"
 
     def list(self):
-        print(f"Adding {self._endpoint()} endpoint")
         view_class= inflection.camelize(self._class_name) + "ListView"
         return path(
             self._endpoint(),

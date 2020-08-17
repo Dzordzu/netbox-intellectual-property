@@ -1,17 +1,33 @@
 {
     "version": "1.0",
+    "plugin_name": "netbox_licences",
+
+    "class_templates": {
+        "named": {
+            "extends": [
+                "netbox_rapidcrud.models.predefined.NamedModel"
+            ]
+        }
+    },
+
     "classes": {
         "SoftwareProvider": {
-            "named": true,
+            "class_templates": [
+                "named"
+            ],
             "fields": [
                 "full_name"
             ]
         },
         "SoftwareType": {
-            "named": true
+            "extends": [
+                "netbox_rapidcrud.models.predefined.NamedModel"
+            ]
         },
         "Software": {
-            "named": true,
+            "class_templates": [
+                "named"
+            ],
             "fields": [
                 {
                     "name": "provider",

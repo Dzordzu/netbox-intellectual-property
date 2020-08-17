@@ -1,11 +1,3 @@
-from rest_framework import routers
-from .views import *
+from ..rapidcrud import rapidcrud
+urlpatterns = rapidcrud.generate_api_urls()
 
-router = routers.DefaultRouter()
-router.register('software', SoftwareViewSet)
-router.register('software-types', SoftwareTypeViewSet)
-router.register('software-providers', SoftwareProviderViewSet)
-# router.register('licences', LicenceViewSet)
-
-
-urlpatterns = router.urls

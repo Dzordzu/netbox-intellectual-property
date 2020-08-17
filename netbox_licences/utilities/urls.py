@@ -32,6 +32,14 @@ class URLPatternGenerator():
             name=f"{inflection.tableize(self._class_name)}_add"
         )
 
+    def edit(self):
+        view_class = inflection.camelize(self._class_name) + "EditView"
+        return path(
+            self._endpoint() + "<int:pk>/edit/",
+            locate(f"{self.package}.views.{view_class}").as_view(),
+            name=f"{inflection.tableize(self._class_name)}_edit"
+        )
+
     def bulkDelete(self):
         view_class= inflection.camelize(self._class_name) + "BulkDeleteView"
         return path(

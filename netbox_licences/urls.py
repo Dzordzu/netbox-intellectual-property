@@ -16,3 +16,4 @@ for gen in _urlpatterns_generators:
     urlpatterns.append(gen.list())
     urlpatterns.append(gen.add())
     urlpatterns.append(gen.bulkDelete())
+    urlpatterns.append(gen.edit())

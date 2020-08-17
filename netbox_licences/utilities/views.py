@@ -71,6 +71,15 @@ class CRUDViewGenerator:
             }
         )
 
+    def edit(self):
+        return type(
+            self.name + "EditView",
+            (self.create(),),
+            {
+                "permission_required": self.package + ".change_" + self.name.lower()
+            }
+        )
+
     def view_set(self):
         return type(
             self.name + "ViewSet",

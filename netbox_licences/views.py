@@ -33,22 +33,19 @@ software_provider_generator = CRUDViewGenerator("SoftwareProvider")
 SoftwareProviderListView = software_provider_generator.list()
 SoftwareProviderCreateView = software_provider_generator.create()
 SoftwareProviderBulkDeleteView = software_provider_generator.bulk_delete()
-
-class SoftwareProviderEditView(PermissionRequiredMixin, ObjectEditView):
-   """ Edit existing Software Provider """
-   permission_required = 'netbox_licences.edit_softwareprovider'
-   queryset = SoftwareProvider.objects.all()
-   model = SoftwareProvider
+SoftwareProviderEditView = software_provider_generator.edit()
 
 software_type_generator = CRUDViewGenerator("SoftwareType")
 SoftwareTypeListView = software_type_generator.list()
 SoftwareTypeCreateView = software_type_generator.create()
 SoftwareTypeBulkDeleteView = software_type_generator.bulk_delete()
+SoftwareTypeEditView = software_type_generator.edit()
 
 software_generator = CRUDViewGenerator("Software")
 SoftwareListView = software_generator.list()
 SoftwareCreateView = software_generator.create()
 SoftwareBulkDeleteView = software_generator.bulk_delete()
+SoftwareEditView = software_generator.edit()
 
 class LicenceListView(PermissionRequiredMixin, ObjectListView):
     permission_required = 'netbox_licences.view_licence'

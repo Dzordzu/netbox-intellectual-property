@@ -1,34 +1,35 @@
 {
-    "SoftwareProvider": {
-        "named": true,
-        "fields": [
-            "full_name"
-        ]
-    },
-
-    "SoftwareType": {
-        "named": true
-    },
-
-    "Software": {
-        "named": true,
-        "fields": [
-            {
-                "name": "provider",
-                "type": "ForeignKey",
-                "params": {
-                    "on_delete": "CASCADE",
-                    "to": "SoftwareProvider"
+    "version": "1.0",
+    "classes": {
+        "SoftwareProvider": {
+            "named": true,
+            "fields": [
+                "full_name"
+            ]
+        },
+        "SoftwareType": {
+            "named": true
+        },
+        "Software": {
+            "named": true,
+            "fields": [
+                {
+                    "name": "provider",
+                    "type": "ForeignKey",
+                    "params": {
+                        "on_delete": "CASCADE",
+                        "to": "SoftwareProvider"
+                    }
+                },
+                {
+                    "name": "software_type",
+                    "type": "ForeignKey",
+                    "params": {
+                        "on_delete": "CASCADE",
+                        "to": "SoftwareType"
+                    }
                 }
-            },
-            {
-                "name": "software_type",
-                "type": "ForeignKey",
-                "params": {
-                    "on_delete": "CASCADE",
-                    "to": "SoftwareType"
-                }
-            }
-        ]
+            ]
+        }
     }
 }
